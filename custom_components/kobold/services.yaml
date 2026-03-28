@@ -1,0 +1,158 @@
+custom_cleaning:
+  name: Custom Cleaning
+  description: >
+    Start a cleaning session with explicit control over mode, navigation style,
+    map category, and optional boundary/map IDs. Useful for zone-specific
+    cleaning via persistent maps.
+  target:
+    entity:
+      domain: vacuum
+      integration: kobold
+  fields:
+    cleaning_mode:
+      name: Cleaning Mode
+      description: "Cleaning intensity: Eco (quiet, less power) or Turbo (full power)."
+      required: false
+      default: Turbo
+      selector:
+        select:
+          options:
+            - Eco
+            - Turbo
+    navigation_mode:
+      name: Navigation Mode
+      description: "Robot navigation behaviour: Normal, Extra Care (avoids fragile objects), or Deep (slower, more thorough)."
+      required: false
+      default: Normal
+      selector:
+        select:
+          options:
+            - Normal
+            - Extra Care
+            - Deep
+    category:
+      name: Map Category
+      description: "2 = non-persistent map (default), 4 = persistent map (requires saved map)."
+      required: false
+      selector:
+        number:
+          min: 2
+          max: 4
+          step: 2
+          mode: box
+    boundary_id:
+      name: Boundary / Zone ID
+      description: "ID of a specific zone boundary from a persistent map. Leave empty to clean the whole area."
+      required: false
+      example: "abc123"
+      selector:
+        text:
+    map_id:
+      name: Map ID
+      description: "ID of the persistent map to use. Leave empty to use the active map."
+      required: false
+      example: "map_001"
+      selector:
+        text:
+
+set_schedule:
+  name: Set Schedule
+  description: >
+    Replace the robot's entire cleaning schedule with a new list of events.
+    Pass an empty list to clear all scheduled cleanings.
+    Day 0 = Sunday, 1 = Monday, 6 = Saturday.
+  target:
+    entity:
+      domain: switch
+      integration: kobold
+  fields:
+    events:
+      name: Events
+      description: "List of schedule events. Each event needs day (0-6), mode (Eco/Turbo), and start_time (HH:MM)."
+      required: true
+      example: '[{"day": 1, "mode": "Turbo", "start_time": "09:00"}, {"day": 5, "mode": "Eco", "start_time": "10:30"}]'
+      selector:
+        object:
+
+add_schedule_event:
+  name: Add/Update Schedule Event
+  description: >
+    Add a cleaning event for a specific day or overwrite the existing event for that day.
+    Day 0 = Sunday, 1 = Monday, 6 = Saturday.
+  target:
+    entity:
+      domain: switch
+      integration: kobold
+  fields:
+    day:
+      name: Day
+      description: "Day of the week (0 = Sunday, 6 = Saturday)."
+      required: true
+      selector:
+        select:
+          options:
+            - label: Sunday
+              value: "0"
+            - label: Monday
+              value: "1"
+            - label: Tuesday
+              value: "2"
+            - label: Wednesday
+              value: "3"
+            - label: Thursday
+              value: "4"
+            - label: Friday
+              value: "5"
+            - label: Saturday
+              value: "6"
+          custom_value: false
+    mode:
+      name: Cleaning Mode
+      description: "Eco (quiet) or Turbo (full power)."
+      required: true
+      default: Turbo
+      selector:
+        select:
+          options:
+            - Eco
+            - Turbo
+    start_time:
+      name: Start Time
+      description: "Time the cleaning starts, in HH:MM format (24-hour clock)."
+      required: true
+      example: "08:30"
+      selector:
+        text:
+
+remove_schedule_event:
+  name: Remove Schedule Event
+  description: >
+    Remove the cleaning event for a specific day.
+    No-op if no event exists for that day.
+  target:
+    entity:
+      domain: switch
+      integration: kobold
+  fields:
+    day:
+      name: Day
+      description: "Day of the week to remove (0 = Sunday, 6 = Saturday)."
+      required: true
+      selector:
+        select:
+          options:
+            - label: Sunday
+              value: "0"
+            - label: Monday
+              value: "1"
+            - label: Tuesday
+              value: "2"
+            - label: Wednesday
+              value: "3"
+            - label: Thursday
+              value: "4"
+            - label: Friday
+              value: "5"
+            - label: Saturday
+              value: "6"
+          custom_value: false

@@ -1,0 +1,82 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Vorwerk Kobold – Anmelden",
+        "description": "Gib die E-Mail-Adresse deines MyKobold-Kontos ein. Ein Einmalcode wird an diese Adresse gesendet.",
+        "data": {
+          "email": "E-Mail-Adresse"
+        }
+      },
+      "code": {
+        "title": "Bestätigungscode eingeben",
+        "description": "Ein Einmalcode wurde an **{email}** gesendet. Gib ihn unten ein.",
+        "data": {
+          "code": "Bestätigungscode"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Die Kobold-Cloud ist nicht erreichbar. Bitte Internetverbindung prüfen und erneut versuchen.",
+      "invalid_auth": "Ungültige E-Mail-Adresse oder Bestätigungscode. Bitte einen neuen Code anfordern und erneut versuchen."
+    },
+    "abort": {
+      "already_configured": "Dieses Kobold-Konto ist bereits eingerichtet.",
+      "cannot_connect": "Verbindung zur Kobold-Cloud fehlgeschlagen. Bitte später erneut versuchen.",
+      "reauth_successful": "Erneute Authentifizierung war erfolgreich."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery": {
+        "name": "Akku"
+      }
+    },
+    "switch": {
+      "schedule": {
+        "name": "Reinigungsplan"
+      }
+    },
+    "button": {
+      "dismiss_alert": {
+        "name": "Meldung schließen"
+      },
+      "find_me": {
+        "name": "Roboter finden"
+      }
+    },
+    "camera": {
+      "cleaning_map": {
+        "name": "Reinigungskarte"
+      }
+    }
+  },
+  "services": {
+    "custom_cleaning": {
+      "name": "Benutzerdefinierte Reinigung",
+      "description": "Startet eine Reinigung mit expliziter Auswahl von Modus, Navigation und Kartenoptionen.",
+      "fields": {
+        "cleaning_mode": {
+          "name": "Reinigungsmodus",
+          "description": "Eco (leise) oder Turbo (volle Leistung)."
+        },
+        "navigation_mode": {
+          "name": "Navigationsmodus",
+          "description": "Normal, Vorsichtig oder Tief."
+        },
+        "category": {
+          "name": "Kartenkategorie",
+          "description": "2 = nicht persistente Karte, 4 = persistente Karte."
+        },
+        "boundary_id": {
+          "name": "Zonengrenze-ID",
+          "description": "ID einer Zonengrenze aus einer persistenten Karte."
+        },
+        "map_id": {
+          "name": "Karten-ID",
+          "description": "ID der zu verwendenden persistenten Karte."
+        }
+      }
+    }
+  }
+}

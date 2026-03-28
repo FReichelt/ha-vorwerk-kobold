@@ -1,0 +1,82 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Vorwerk Kobold – Sign In",
+        "description": "Enter the email address linked to your MyKobold account. A one-time code will be sent to that address.",
+        "data": {
+          "email": "Email address"
+        }
+      },
+      "code": {
+        "title": "Enter the verification code",
+        "description": "A one-time code was sent to **{email}**. Enter it below.",
+        "data": {
+          "code": "Verification code"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Unable to reach the Kobold cloud. Check your internet connection and try again.",
+      "invalid_auth": "Invalid email or verification code. Please request a new code and try again."
+    },
+    "abort": {
+      "already_configured": "This Kobold account is already configured.",
+      "cannot_connect": "Failed to connect to the Kobold cloud. Please try again later.",
+      "reauth_successful": "Re-authentication was successful."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "battery": {
+        "name": "Battery"
+      }
+    },
+    "switch": {
+      "schedule": {
+        "name": "Cleaning Schedule"
+      }
+    },
+    "button": {
+      "dismiss_alert": {
+        "name": "Dismiss Alert"
+      },
+      "find_me": {
+        "name": "Find Me"
+      }
+    },
+    "camera": {
+      "cleaning_map": {
+        "name": "Cleaning Map"
+      }
+    }
+  },
+  "services": {
+    "custom_cleaning": {
+      "name": "Custom Cleaning",
+      "description": "Start a cleaning session with explicit mode, navigation, and map options.",
+      "fields": {
+        "cleaning_mode": {
+          "name": "Cleaning Mode",
+          "description": "Eco (quiet) or Turbo (full power)."
+        },
+        "navigation_mode": {
+          "name": "Navigation Mode",
+          "description": "Normal, Extra Care, or Deep."
+        },
+        "category": {
+          "name": "Map Category",
+          "description": "2 = non-persistent map, 4 = persistent map."
+        },
+        "boundary_id": {
+          "name": "Boundary ID",
+          "description": "Zone boundary ID from a persistent map."
+        },
+        "map_id": {
+          "name": "Map ID",
+          "description": "Persistent map ID to use."
+        }
+      }
+    }
+  }
+}
